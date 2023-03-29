@@ -1,0 +1,120 @@
+.bannerHome{
+    background-color: #F0EBFF;
+   
+}
+
+#tituloCarousel{
+    color:#07479C!important;
+    padding: 30px;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 800;
+}
+#pFigure{
+    font-weight: 800;
+    color: rgb(8, 8, 8);
+    font-size: 1.2em;
+}
+.foto{
+    margin-top: 20px;
+}
+.bannerCarousel{
+    padding-bottom: 50px;
+}
+
+
+.section-3{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    align-items: center;
+    display:  inline-flex;
+}
+
+.area-title-2  h1{
+    font-size: 28px;
+    font-weight: 800;
+    padding-right: 30px;
+    
+}
+.area-title-2  h3{
+    font-size: 20px;
+    font-weight: 400;
+    padding-left: 35px;
+
+}
+
+@media screen and (max-width:420px) {
+    .area-mapa{
+        margin-top: 20px;
+    }
+    iframe{
+        padding: auto;
+        margin: auto;
+        width: 40vh !important;
+        height: 30vh !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .titulo-mapa{
+        margin-top: 10px;
+    }
+    .titulo-mapa h1{
+        font-size: 15px !important;
+        /* text-indent: 2em;  */
+        line-height: 28px; 
+        align-items: center;
+    }
+    .titulo-mapa p{
+        align-items: center;
+        line-height: 28px; 
+        
+    }
+    #titulo-mapa{
+        padding-left: -20px;
+    }
+    .area-video{
+        margin-bottom: 20px;
+    }
+}
+.area-video{
+    margin-top: 20px;
+}
+.area-video h4{
+    font-size: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.area-video iframe{
+    margin-left: 0px;
+}
+
+#newsletter{
+    font-size: 24px;
+    color:#07479C!important;
+    font-weight: bold;
+    margin-top: 50px;
+}
+
+#colorButton{
+    background-color: #002774;
+}
+
+.section-5{
+    padding-top: 50px;
+    display:  inline-flex;
+}
+
+.titulo-mapa h1{
+    font-size: 24px;
+    text-align: center;
+    margin: 50px;
+    font-weight: bold;
+    padding-left: 25px;
+ 
+}
+.titulo-mapa p{
+    padding-left: 50px;
+    text-align: center;
+    font-size: 18px;
+    margin: 20px;
+}
