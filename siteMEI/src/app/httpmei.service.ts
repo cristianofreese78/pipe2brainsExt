@@ -37,6 +37,7 @@ export class HttpMeiService {
         `Backend retornou o codigo ${error.status},` +
         `Body: ${error.error}`
       );
+      alert(error.error);
     }
     return throwError(()=> new Error('Algo errado aconteceu, por favor tente novamente depois.'))
   } 

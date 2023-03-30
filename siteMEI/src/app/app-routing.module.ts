@@ -8,7 +8,7 @@ const routes: Routes = [{ path: 'cadastro', loadChildren: () => import('./cadast
                         { path: 'telarecaptcha', loadChildren: () => import('./telarecaptcha/telarecaptcha.module').then(m => m.TelarecaptchaModule) },
                         { path: 'sobre', loadChildren: () => import('./sobre/sobre.module').then(m => m.SobreModule) },
                         { path: 'contato', loadChildren: () => import('./contato/contato.module').then(m => m.ContatoModule) },
-                        { path: 'newsletter', loadChildren: () => import('./newsletter/newsletter.module').then(m => m.NewsletterModule) }
+                        { path: 'newsletter', loadChildren: () => import('./newsletter/newsletter.module').then(m => m.NewsletterModule) }                        
                        ];
 @NgModule({
   declarations: [],

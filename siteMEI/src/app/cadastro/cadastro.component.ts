@@ -149,8 +149,9 @@ export class CadastroComponent implements OnInit {
   public slideAtivo: number = 1;
 
   nextButtonClick() {
-    if (this.slideAtivo < 1 || this.slideAtivo > 5) { return }
-    if (this.slideAtivo != 5) { this.slideAtivo++; }
+    if (this.slideAtivo < 1 || this.slideAtivo > 6) { return }   
+    if (this.slideAtivo != 6) { this.slideAtivo++; }
+    if (this.slideAtivo == 6) {this.onSubmit(); return;}
     var allSlides = document.querySelectorAll('.slide')
 
     var slideAtivar = document.getElementById(`slide-${this.slideAtivo}`)
@@ -161,7 +162,7 @@ export class CadastroComponent implements OnInit {
   }
 
   prevButtonClick() {
-    if (this.slideAtivo < 1 || this.slideAtivo > 5) { return }
+    if (this.slideAtivo < 1 || this.slideAtivo > 6) { return }
     if (this.slideAtivo != 1) { this.slideAtivo--; }
 
     var allSlides = document.querySelectorAll('.slide')
@@ -172,5 +173,4 @@ export class CadastroComponent implements OnInit {
     });
     slideAtivar?.classList.remove('slide-hidden')
   }
-
 }

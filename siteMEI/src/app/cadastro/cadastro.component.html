@@ -1,10 +1,13 @@
-<form #form="ngForm" name="form">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSldZ9670r5kOg2RisJp9lpc3bU13vnPus6zQ&usqp=CAU" class="mb-4 rounded mx-auto d-block" width="108" height="85">
+    <h1 class="h3 mb-3 fw-normal text-center linha1">Complete os dados</h1>
+    
+<form #form="ngForm" name="form" class="form-signin w-100 m-auto mx-auto">
 
     <ul class="slides-container" id="slides-container">
         <!-- dados pessoais -->
 
         <li class="slide" id="slide-1">
-
+            <h1 class="h3 mb-3 fw-normal text-center linha2">Seus dados para contato</h1>
             <div class="mb-3">
                 <label for="cpf" class="form-label">CPF: </label>
                 <input type="text" required class="form-control input_text" name="cpf" #cpf="ngModel" ngModel id="cpf" #cpfValue
@@ -37,48 +40,31 @@
                     [(ngModel)]="formModel.telefone2">
             </div>
 
-
         </li>
+        
         <li class="slide slide-hidden" id="slide-2">
-            <!-- endereço da empresa -->
-            <fieldset>
-                <div class="mb-3">
-                    <legend>Endereço da empresa</legend>
-                </div>
-                <div class="mb-3">
-                    <label for="nrCadastroIPTU" class="form-label ">Número do cadastro IPTU: </label>
-                    <input type="text" required class="form-control input_text" id="nrCadastroIPTU" name="nrCadastroIPTU"
-                        #nrCadastroIPTU="ngModel" ngModel [(ngModel)]="formModel.nrCadastroIPTU"
-                        (blur)="getIPTU(nrCadastroIPTU.value)">
-                </div>
-                <div class="mb-3">
-                    <label for="areaEmpreend" class="form-label ">Área do empreendimento: </label>
-                    <input type="text" required mask="0*" class="form-control input_text" id="areaEmpreend" name="areaEmpreend"
-                        #areaEmpreend="ngModel" ngModel [(ngModel)]="formModel.areaEmpreend">
-                </div>
-            </fieldset>
-        </li>
-        <li class="slide slide-hidden" id="slide-3">
 
             <!-- definicao dos cnae -->
+            <h1 class="h3 mb-3 fw-normal text-center linha2">Atividade que irá desempenhar</h1>
             <div class="mb-3">
-                <label for="cnaePrimario">Selecione atividade principal: </label>
+                <label for="cnaePrimario" class="form-label">Selecione atividade principal: </label>
                 <input type="search" (ngModelChange)="buscaCNAE(key.value)" #key="ngModel" ngModel name="key"
-                    id="cnaePrimario" class="" placeholder="Busca CNAE" required>
+                    id="cnaePrimario" class="form-control" placeholder="Busca CNAE" required>
             </div>
             <div class="mb-3" id="containerCnae">
                 <ul>
-                    <li *ngFor="let c of cnaeResultadoBusca" style="list-style-type: none"><input type="radio"
+                    <li class="form-check" *ngFor="let c of cnaeResultadoBusca" style="padding-bottom: 10px; font-size: 16px;">
+                        <input class="form-check-input" type="radio"
                             (change)="atribuiCnae(cnaeSelecionado)" #cnaeSelecionado name="cnaeSelecionado"
-                            value="{{c.cnae}}" [attr.data-ocup]="c.ocupacao">{{c.cnae}} - {{c.ocupacao}}</li>
+                            value="{{c.cnae}}" [attr.data-ocup]="c.ocupacao">{{c.cnae}} - {{c.ocupacao}}>
+                    </li>
                 </ul>
             </div>
-
         </li>
-        <li class="slide slide-hidden" id="slide-4">
+        <li class="slide slide-hidden" style="padding-bottom: 184px;" id="slide-3">
 
             <!-- dados do negócio -->
-
+            <h1 class="h3 mb-3 fw-normal text-center linha2">Dados sobre o seu negócio</h1>
             <div class="mb-3">
                 <label for="previsaoFaturamento" class="form-label">Previsão de faturamento (anual): </label>
                 <input type="text" class="form-control" id="previsaoFaturamento" name="previsaoFaturamento"
@@ -94,107 +80,105 @@
                 <input type="text" class="form-control" id="nrFuncionarios" name="nrFuncionarios"
                     #nrFuncionarios="ngModel" ngModel [(ngModel)]="formModel.nrFuncionarios">
             </div>
-
-        </li>
-        <li class="slide slide-hidden" id="slide-5">
-            <!-- questionario social -->
-
-            <div class="input-group mb-3">
-                <div class="input-group-text">
-                    <input id="eFuncPublico" class="form-check-input me-1" type="checkbox" value="false"
-                        name="eFuncPublico" #eFuncPublico="ngModel" ngModel [(ngModel)]="formModel.eFuncPublico">
-                    <label for="eFuncPublico">Você é funcionário público?</label>
-                </div>
-            </div>
-            <div class="input-group mb-3">
-                <div class="input-group-text">
-                    <input id="eSocio" class="form-check-input me-1" type="checkbox" value="false" name="eSocio"
-                        #eSocio="ngModel" ngModel [(ngModel)]="formModel.eSocio">
-                    <label for="eSocio">Você é sócio em alguma outra empresa?</label>
-                </div>
-            </div>
-            <div class="input-group mb-3">
-                <div class="input-group-text">
-                    <input id="eMeiAtivo" class="form-check-input me-1" type="checkbox" value="false" name="eMeiAtivo"
-                        #eMeiAtivo="ngModel" ngModel [(ngModel)]="formModel.eMeiAtivo">
-                    <label for="eMeiAtivo">Você já tem MEI ativo?</label>
-                </div>
-            </div>
-            <div class="input-group mb-3">
-                <div class="input-group-text">
+            <div class="mb-3">
+                <label for="temFiliais" class="form-label">Seu negócio terá filiais?</label>
+                <div class="input-group-text">                    
                     <input id="temFiliais" class="form-check-input me-1" type="checkbox" value="false" name="temFiliais"
                         #temFiliais="ngModel" ngModel [(ngModel)]="formModel.temFiliais">
-                    <label for="temFiliais">Seu negócio tem filiais?</label>
+                    <label for="temFiliais">Marque para SIM</label>
                 </div>
-            </div>
-            <div class="input-group mb-3">
+            </div> 
+
+        </li>
+        <li class="slide slide-hidden" style="padding-bottom: 106px;" id="slide-4">
+            <!-- questionario social -->
+            <h1 class="h3 mb-3 fw-normal text-center linha2">Recebe algum destes benefícios?</h1>
+            <div class="mb-3">
                 <div class="input-group-text">
                     <input id="temAposentadoriaInvalidez" class="form-check-input me-1" type="checkbox" value="false"
                         name="temAposentadoriaInvalidez" #temAposentadoriaInvalidez="ngModel" ngModel
                         [(ngModel)]="formModel.temAposentadoriaInvalidez">
-                    <label for="temAposentadoriaInvalidez">Você recebe aposentadoria por invalidez?</label>
+                    <label for="temAposentadoriaInvalidez">Aposentadoria por invalidez</label>
                 </div>
             </div>
-            <div class="input-group mb-3">
+            <div class="mb-3">
                 <div class="input-group-text">
                     <input id="temAuxilioDoenca" class="form-check-input me-1" type="checkbox" value="false"
                         name="temAuxilioDoenca" #temAuxilioDoenca="ngModel" ngModel
                         [(ngModel)]="formModel.temAuxilioDoenca">
-                    <label for="temAuxilioDoenca">Você recebe auxílio doença?</label>
+                    <label for="temAuxilioDoenca">Auxílio doença</label>
                 </div>
             </div>
-            <div class="input-group mb-3">
+            <div class="mb-3">
                 <div class="input-group-text">
                     <input id="temSalarioMaternidade" class="form-check-input me-1" type="checkbox" value="false"
                         name="temSalarioMaternidade" #temSalarioMaternidade="ngModel" ngModel
                         [(ngModel)]="formModel.temSalarioMaternidade">
-                    <label for="temSalarioMaternidade">Você recebe salário maternidade?</label>
+                    <label for="temSalarioMaternidade">Salário maternidade</label>
                 </div>
             </div>
-            <div class="input-group mb-3">
+            <div class="mb-3">
                 <div class="input-group-text">
                     <input id="temSegDesemprego" class="form-check-input me-1" type="checkbox" value="false"
                         name="temSegDesemprego" #temSegDesemprego="ngModel" ngModel
                         [(ngModel)]="formModel.temSegDesemprego">
-                    <label for="temSegDesemprego">Você recebe seguro desemprego?</label>
+                    <label for="temSegDesemprego">Seguro desemprego</label>
                 </div>
             </div>
-            <div class="input-group mb-3">
+            <div class="mb-3">
                 <div class="input-group-text">
                     <input id="temBpcLoas" class="form-check-input me-1" type="checkbox" value="false" name="temBpcLoas"
                         #temBpcLoas="ngModel" ngModel [(ngModel)]="formModel.temBpcLoas">
-                    <label for="temBpcLoas">Você recebe BPC-LOAS?</label>
+                    <label for="temBpcLoas">BPC-LOAS</label>
                 </div>
             </div>
-            <div class="input-group mb-3">
+            <div class="mb-3">
                 <div class="input-group-text">
                     <input id="temProuni" class="form-check-input me-1" type="checkbox" value="false" name="temProuni"
                         #temProuni="ngModel" ngModel [(ngModel)]="formModel.temProuni">
-                    <label for="temProuni">Você recebe bolsa do PROUNI?</label>
+                    <label for="temProuni">PROUNI</label>
                 </div>
             </div>
-            <div class="input-group mb-3">
+            <div class="mb-3">
                 <div class="input-group-text">
                     <input id="temFies" class="form-check-input me-1" type="checkbox" value="false" name="temFies"
                         #temFies="ngModel" ngModel [(ngModel)]="formModel.temFies">
-                    <label for="temFies">Você tem financiamento FIES?</label>
+                    <label for="temFies">FIES</label>
                 </div>
             </div>
-            <div class="input-group mb-3">
+            <div class="mb-3">
                 <div class="input-group-text">
                     <input id="temBolsaFamilia" class="form-check-input me-1" type="checkbox" value="false"
                         name="temBolsaFamilia" #temBolsaFamilia="ngModel" ngModel
                         [(ngModel)]="formModel.temBolsaFamilia">
-                    <label for="temBolsaFamilia">Você é beneficiário do bolsa família?</label>
+                    <label for="temBolsaFamilia">Bolsa família</label>
                 </div>
             </div>
-
-
-
-            <button (click)="onSubmit()" type="button" class="btn btn-primary">Enviar</button>
+            <!--<button (click)="onSubmit()" type="button" class="btn btn-primary">Enviar</button>-->
 
         </li>
-        <div>
+        <li class="slide slide-hidden" style="padding-bottom: 262px;" id="slide-5">
+            <h1 class="h3 mb-3 fw-normal text-center linha2">Consulta Estabelecer (opcional)</h1>            
+            <fieldset>               
+                <div class="mb-3">
+                    <label for="nrCadastroIPTU" class="form-label ">Número do cadastro IPTU: </label>
+                    <input type="text" required class="form-control input_text" id="nrCadastroIPTU" name="nrCadastroIPTU"
+                        #nrCadastroIPTU="ngModel" ngModel [(ngModel)]="formModel.nrCadastroIPTU"
+                        (blur)="getIPTU(nrCadastroIPTU.value)">
+                </div>
+                <div class="mb-3">
+                    <label for="enderecoImovel" class="form-label ">Endereço do imóvel: </label>
+                    <input type="text" required class="form-control input_text" id="enderecoImovel" name="enderecoImovel"
+                        #nrCadastroIPTU="ngModel" ngModel [(ngModel)]="formModel.enderecoIPTU">
+                </div>
+                <div class="mb-3">
+                    <label for="areaEmpreend" class="form-label ">Área do empreendimento: </label>
+                    <input type="text" required mask="0*" class="form-control input_text" id="areaEmpreend" name="areaEmpreend"
+                        #areaEmpreend="ngModel" ngModel [(ngModel)]="formModel.areaEmpreend">
+                </div>
+            </fieldset>
+        </li>
+        <div class="text-center">
             <button (click)="prevButtonClick()" class="slide-arrow" id="slide-arrow-prev">
                 &#8249;
             </button>
@@ -205,3 +189,27 @@
 
     </ul>
 </form>
+
+<!--
+    <div class="mb-3">
+                <div class="input-group-text">
+                    <input id="eFuncPublico" class="form-check-input me-1" type="checkbox" value="false"
+                        name="eFuncPublico" #eFuncPublico="ngModel" ngModel [(ngModel)]="formModel.eFuncPublico">
+                    <label for="eFuncPublico">Funcionário público federal</label>
+                </div>
+            </div>
+            <div class="mb-3">
+                <div class="input-group-text">
+                    <input id="eSocio" class="form-check-input me-1" type="checkbox" value="false" name="eSocio"
+                        #eSocio="ngModel" ngModel [(ngModel)]="formModel.eSocio">
+                    <label for="eSocio">Sócio de outra empresa</label>
+                </div>
+            </div>
+            <div class="mb-3">
+                <div class="input-group-text">
+                    <input id="eMeiAtivo" class="form-check-input me-1" type="checkbox" value="false" name="eMeiAtivo"
+                        #eMeiAtivo="ngModel" ngModel [(ngModel)]="formModel.eMeiAtivo">
+                    <label for="eMeiAtivo">MEI ativo</label>
+                </div>
+            </div>
+-->
