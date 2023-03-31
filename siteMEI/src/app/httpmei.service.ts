@@ -38,6 +38,9 @@ export class HttpMeiService {
         `Body: ${error.error}`
       );
       alert(error.error);
+      document.getElementById(`slide-arrow-next`)?.classList.remove('slide-hidden');
+      document.getElementById(`slide-arrow-prev`)?.classList.remove('slide-hidden');
+      document.getElementById(`spinnerCad`)?.classList.add('slide-hidden');
     }
     return throwError(()=> new Error('Algo errado aconteceu, por favor tente novamente depois.'))
   } 

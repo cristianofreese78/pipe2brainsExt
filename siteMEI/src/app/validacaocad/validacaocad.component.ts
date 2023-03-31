@@ -85,7 +85,7 @@ export class ValidacaocadComponent implements OnInit {
     this.data.requisicaoAtual.subscribe(requisicao => this.formModel = requisicao);
     this.data.cpfAtual.subscribe(cpf => this.cpfModel = cpf);
     this.checaViabilidadeMei();
-    this.putFormMei();
+    this.consultaEstabelecer();  
   }
 
   tornaElegivel(){
@@ -117,7 +117,6 @@ export class ValidacaocadComponent implements OnInit {
       this.formModel.codStatusConsultaIPTU = parseInt(this.resultadoEstabelecer)
       this.putFormMei()
     })
-
   }
 
   checaViabilidadeMei(){

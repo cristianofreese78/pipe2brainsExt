@@ -80,7 +80,8 @@ export class CadastroComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.data.requisicaoAtual.subscribe(requisicao => this.formModel = requisicao)
+    this.data.requisicaoAtual.subscribe(requisicao => this.formModel = requisicao);
+    document.getElementById(`spinnerCad`)?.classList.add('slide-hidden');  
   }
 
   buscaCNAE(key: string) {
@@ -119,6 +120,7 @@ export class CadastroComponent implements OnInit {
   }
 
   postMEI(formModel: FormModel) {
+    
     this.httpMeiService.postRequest(formModel).subscribe((response) => {
       console.log('resposta do post');
       console.log(response);
@@ -129,9 +131,9 @@ export class CadastroComponent implements OnInit {
 
       if (response.id) {
         alert('Cadastro enviado com sucesso!')
-      }
+      }  
     })
-    this.data.setRequisicao(this.formModel)
+    this.data.setRequisicao(this.formModel)       
   }
 
   atribuiCnae(elem: any) {
@@ -151,7 +153,11 @@ export class CadastroComponent implements OnInit {
   nextButtonClick() {
     if (this.slideAtivo < 1 || this.slideAtivo > 6) { return }   
     if (this.slideAtivo != 6) { this.slideAtivo++; }
-    if (this.slideAtivo == 6) {this.onSubmit(); return;}
+    if (this.slideAtivo == 6) {
+      this.bloqueioSlide();     
+      this.onSubmit(); 
+      return;
+    }
     var allSlides = document.querySelectorAll('.slide')
 
     var slideAtivar = document.getElementById(`slide-${this.slideAtivo}`)
@@ -173,4 +179,10 @@ export class CadastroComponent implements OnInit {
     });
     slideAtivar?.classList.remove('slide-hidden')
   }
+
+  bloqueioSlide() {
+    document.getElementById(`slide-arrow-next`)?.classList.add('slide-hidden');
+    document.getElementById(`slide-arrow-prev`)?.classList.add('slide-hidden');
+    document.getElementById(`spinnerCad`)?.classList.remove('slide-hidden');
+  }  
 }

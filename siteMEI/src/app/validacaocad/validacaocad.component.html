@@ -1,79 +1,175 @@
-
 <div class="validacao-container w-100 m-auto mx-auto">
-    <div class="mb-3">
-        <h1 id="titulo">Vamos lá {{(formModel.nome).split(' ')[0]}}...</h1>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSldZ9670r5kOg2RisJp9lpc3bU13vnPus6zQ&usqp=CAU" class="mb-4 rounded mx-auto d-block" width="108" height="85">
+    <h1 class="h3 mb-3 fw-normal text-center linha1"  id="titulo">Sr(a): {{(formModel.nome).split(' ')[0]}}</h1>
+    <div class="mb-3">       
+        <h1 class="h3 mb-3 fw-normal text-center linha2">Acompanhe o resultado abaixo</h1>
     </div>
-
-    <div class="mb-3">
-        <div *ngIf="cpfModel.situacao.codigo == '0'; else elseBlock"><span class="aprovado">Seu CPF está regular.</span>
-        </div>
-        <ng-template #elseBlock><span class="negado">Seu CPF está irregular, procure os orgãos competentes. Condição
-                atual do cpf: {{cpfModel.situacao.descricao}}</span></ng-template>
-    </div>
-
-    <div class="mb-3">
-        <div *ngIf="calculaIdade(formModel.dataNascimento) >= 18; else elseBlockIdade"><span class="aprovado">Você é
-                maior de idade.</span></div>
-        <ng-template #elseBlockIdade><span class="negado">Para a condição de Micro Empreendedor Individual você precisa
-                ser maior de idade.</span></ng-template>
-    </div>
-
-    <div class="mb-3" *ngIf="formModel.eFuncPublico"><span class="negado">Funcionários públicos não podem ser
-            MEI.</span></div>
-    <div class="mb-3" *ngIf="formModel.eSocio"><span class="negado">MEIs não podem ser sócios em outras empresas.</span>
-    </div>
-    <div class="mb-3" *ngIf="formModel.eMeiAtivo"><span class="negado">Não é permitido ter outro MEI ativo.</span></div>
-    <div class="mb-3" *ngIf="formModel.temFiliais"><span class="negado">A Pessoa Jurídica do tipo MEI não pode ter
-            filiais.</span></div>
-
-    <div class="mb-3" *ngIf="formModel.temAposentadoriaInvalidez"><span class="alerta">Você pode perder sua
-            aposentadoria por invalidez se prosseguir com o processo de MEI.</span></div>
-    <div class="mb-3" *ngIf="formModel.temAuxilioDoenca"><span class="alerta">Você pode perder seu auxílio doença se
-            prosseguir com o processo de MEI.</span></div>
-    <div class="mb-3" *ngIf="formModel.temSalarioMaternidade"><span class="alerta">Você pode perder seu salário
-            maternidade se prosseguir com o processo de MEI.</span></div>
-    <div class="mb-3" *ngIf="formModel.temSegDesemprego"><span class="alerta">Você pode perder seu seguro desemprego se
-            prosseguir com o processo de MEI.</span></div>
-    <div class="mb-3" *ngIf="formModel.temBpcLoas"><span class="alerta">Você pode perder seu BPC-LOAS se prosseguir com
-            o processo de MEI.</span></div>
-    <div class="mb-3" *ngIf="formModel.temProuni"><span class="alerta">Você pode perder sua bolsa PROUNI se prosseguir
-            com o processo de MEI.</span></div>
-    <div class="mb-3" *ngIf="formModel.temFies"><span class="alerta">Você pode perder seu financiamento FIES se
-            prosseguir com o processo de MEI.</span></div>
-    <div class="mb-3" *ngIf="formModel.temBolsaFamilia"><span class="alerta">Você pode perder sua bolsa família se
-            prosseguir com o processo de MEI.</span></div>
-
-    <div class="mb-3">
-        <div *ngIf="verificaFaturamento(); else elseBlockFaturamento"><span class="aprovado">Faturamento dentro do
-                limite definido para sua atividade.</span></div>
-        <ng-template #elseBlockFaturamento><span class="negado">Faturamento acima do limite permitido para sua
-                atividade.</span></ng-template>
-    </div>
-
-    <div class="mb-3" *ngIf="!verificaCustos()"><span class="negado">Custos não podem exceder em 80% o
-            faturamento.</span></div>
-
-    <div class="mb-3" *ngIf="formModel.nrFuncionarios > 1"><span class="negado">O MEI só pode ter até 1
-            funcionário.</span></div>
 
     <div *ngIf="formModel.statusConsultaMEI" class="mb-3">
-        <div class="mb-3 aprovado">Você atende as condições iniciais para ser MEI. Deseja solicitar uma consulta para
-            estabelecer?</div>
-        <div class="mb-3"><span><button type="button" class="btn btn-dark" (click)="consultaEstabelecer()">Pedir
-                    Consulta</button></span></div>
+        <div class="alert alert-success" role="alert">
+                <span>VOCÊ ESTÁ APTO PARA SER MEI</span>
+        </div>
+        <!--<div class="mb-3"><span><button type="button" class="btn btn-dark" (click)="consultaEstabelecer()">Obter Consulta Estabelecer</button></span></div>-->
     </div>
 
-
-    <div *ngIf="formModel.codStatusConsultaIPTU != 9">
-        <div *ngIf="resultadoEstabelecer == '0'; else elseBlockEstabelecer"><span class="aprovado">Sua consulta para
-                estabelecer foi aprovada. Procure a Praça do Empreendedor para formalizar.</span></div>
-        <ng-template #elseBlockEstabelecer><span class="negado">Sua consulta para estabelecer não foi
-                aprovada.</span></ng-template>
+    <div *ngIf="!formModel.statusConsultaMEI" class="mb-3">
+        <div class="alert alert-danger" role="alert">
+                <span>VOCÊ NÂO ESTÁ APTO PARA SER MEI</span>
+        </div>
     </div>
 
+    <div class="mb-3">
+        <div *ngIf="cpfModel.situacao.codigo == '0'; else elseBlock">
+                <div class="alert alert-success" role="alert">
+                        <span>CPF REGULAR</span>
+                </div>
+        </div>
+        <ng-template #elseBlock>
+                <div class="alert alert-danger" role="alert">
+                        <span>CPF COM RESTRIÇÕES</span>
+                </div>
+        </ng-template>
+    </div>
 
+    <div class="mb-3">
+        <div *ngIf="calculaIdade(formModel.dataNascimento) >= 18; else elseBlockIdade">
+                <div class="alert alert-success" role="alert">
+                        <span>MAIOR DE IDADE</span>
+                </div>
+        </div>
+        <ng-template #elseBlockIdade>
+                <div class="alert alert-danger" role="alert">
+                        <span>MENOR DE IDADE</span>
+                </div>
+        </ng-template>
+    </div>
+
+    <div class="mb-3" *ngIf="formModel.eFuncPublico"> 
+        <div class="alert alert-danger" role="alert">
+                <span>FUNCIONÁRIO PUBLICO FEDERAL</span>
+        </div>
+    </div>
+
+    <div class="mb-3" *ngIf="formModel.eSocio">
+        <div class="alert alert-danger" role="alert">
+                <span>SÓCIO DE OUTRA EMPRESA</span>
+        </div>
+    </div>
+
+    <div class="mb-3" *ngIf="formModel.eMeiAtivo">
+        <div class="alert alert-danger" role="alert">
+                <span>MEI ATIVO</span>
+        </div>
+    </div>
+
+    <div class="mb-3" *ngIf="formModel.temFiliais">
+        <div class="alert alert-danger" role="alert">
+                <span>NÃO É PERMITIDO TER FILIAIS COMO MEI</span>
+        </div>
+    </div>
+
+    <div class="mb-3" *ngIf="formModel.temAposentadoriaInvalidez">
+        <div class="alert alert-warning" role="alert">
+                <span>PERDERÁ APOSENTADORIA INVALIDEZ</span>
+        </div>
+    </div>
+
+    <div class="mb-3" *ngIf="formModel.temAuxilioDoenca">
+        <div class="alert alert-warning" role="alert">
+                <span>PODERÁ PERDER AUXILIO DOENÇA</span>
+        </div>
+    </div>
+
+    <div class="mb-3" *ngIf="formModel.temSalarioMaternidade">
+        <div class="alert alert-warning" role="alert">
+                <span>PODERÁ PERDER SALÁRIO MATERNIDADE</span>
+        </div>
+    </div>
+
+    <div class="mb-3" *ngIf="formModel.temSegDesemprego">
+        <div class="alert alert-warning" role="alert">
+                <span>PODERÁ PERDER SEGURO DESEMPREGO</span>
+        </div>
+    </div>
+
+    <div class="mb-3" *ngIf="formModel.temBpcLoas">
+        <div class="alert alert-warning" role="alert">
+                <span>PERDERÁ BENEFÍCIO BPC LOAS</span>
+        </div>
+    </div>
+
+    <div class="mb-3" *ngIf="formModel.temProuni">
+        <div class="alert alert-warning" role="alert">
+                <span>PERDERÁ BENEFÍCIO PROUNI</span>
+        </div>
+    </div>
+
+    <div class="mb-3" *ngIf="formModel.temFies">
+        <div class="alert alert-warning" role="alert">
+                <span>PERDERÁ BENEFÍCIO FIES</span>
+        </div>
+    </div>
+
+    <div class="mb-3" *ngIf="formModel.temBolsaFamilia">
+        <div class="alert alert-warning" role="alert">
+                <span>PODERÁ PERDER BENEFÍCIO BOLSA FAMÍLIA</span>
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <div *ngIf="verificaFaturamento(); else elseBlockFaturamento">
+                <div class="alert alert-success" role="alert">
+                        <span>FATURAMENTO ANUAL DENTRO DO LIMITE</span>
+                </div>
+        </div>
+        <ng-template #elseBlockFaturamento>
+                <div class="alert alert-danger" role="alert">
+                        <span>FATURAMENTO ANUAL ACIMA DO LIMITE</span>
+                </div>
+        </ng-template>
+    </div>
+
+    <div class="mb-3" *ngIf="!verificaCustos()">
+        <div class="alert alert-danger" role="alert">
+                <span>CUSTO ANUAL SUPERIOR A 80% DA RECEITA</span>
+        </div>
+    </div>
+
+    <div class="mb-3" *ngIf="formModel.nrFuncionarios > 1">
+        <div class="alert alert-danger" role="alert">
+                <span>PERMITIDO TER APENAS 1 FUNCIONÁRIO</span>
+        </div>
+    </div>
+
+    
+
+    <div *ngIf="formModel.codStatusConsultaIPTU == 9" style="padding-top:50px;"> 
+        <div class="alert alert-secondary" role="alert">
+                <span>CONSULTA ESTABELECER NÃO REALIZADA</span>
+        </div>
+    </div>
+    
+    <div *ngIf="formModel.codStatusConsultaIPTU != 9" style="padding-top:50px;">        
+        <div *ngIf="resultadoEstabelecer == '0'; else elseBlockEstabelecer">
+                <div class="alert alert-success" role="alert">
+                        <span>CONSULTA ESTABELECER APROVADA</span>
+                </div>
+        </div>
+        <ng-template #elseBlockEstabelecer>
+                <div class="alert alert-danger" role="alert">
+                        <span>CONSULTA ESTABELECER REPROVADA</span>
+                </div>
+        </ng-template>
+    </div>
+    <div id="container">
+        <div class="row" style="padding-top: 40px; ">
+                <div id="divleft">
+                </div>
+                <div class="rounded-5" id="divright">
+                <div class="doubt"><a routerLink="/inicio" target="_blank"><i class="icofont icofont-question-circle"></i></a></div>
+                <div class="whats"><a href="https://api.whatsapp.com/send?phone=5547999999999&text=Olá, gostaria de obter auxilio referente ao meu enquadramento como MEI." target="_blank"><i class="icofont icofont-whatsapp"></i></a></div>
+                </div>        
+        </div>
+    </div>
 </div>
-
-
-
 

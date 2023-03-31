@@ -40,6 +40,7 @@ blockquote:before blockquote:after, q:before, q:after {
     --blue-light: #e3e8ee;
     --blue-light2: #928fa8!important;
     --dark-blue: #002d47; 
+    --dark-blue-light: #4b5961; 
   }
 
 html, body { height: 100%; }

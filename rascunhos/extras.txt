@@ -1,0 +1,3 @@
+telaRecaptcha
+Puxar condição do cidadão (socio, mei, funcionario publico)
+
