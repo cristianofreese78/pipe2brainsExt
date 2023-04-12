@@ -1,26 +1,25 @@
 .linha1{
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 300;
-    font-size: 32px;
-    line-height: 44px;
-    color: #002774;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 32px;
+  line-height: 44px;
+  color: #002774;
 }
 
 .linha2{
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 19px;
-    color: #101A24;
-    padding-bottom: 10px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 19px;
+  color: #101A24;
+  padding-bottom: 10px;
 }
 
 .form-signin {
   max-width: 330px;
-  align-items: center;
- 
+  align-items: center; 
 }
 
 .form-signin .form-group:focus-within {
@@ -37,31 +36,6 @@
   margin-top: 50px;  
 }
 
-.step {
-    height: 30px;
-    width: 30px;
-    margin: 0 24px;
-    background-color: #bbbbbb;
-    border: none;
-    border-radius: 50%;
-    display: inline-block;
-    opacity: 0.5;
-}
-
-.step.active {
-    opacity: 1
-}
-
-.step.finish {
-    background-color: #002774;
-}
-
-.all-steps {
-    text-align: center;    
-    margin-top: 30px;
-    margin-bottom: 30px
-}
-
 .form-submit-button {
 	background: #002774;
 	color: #fff;
@@ -69,10 +43,11 @@
 	border-radius: 20px;
 	box-shadow: 5px 5px 5px #eee;
 	text-shadow: none;
-    height: 50px;
-    width: 140px;
+  height: 50px;
+  width: 140px;
+  text-align: center;
 }
 
-#botao{
+#botaoRecaptcha{
     text-align: center;
 }

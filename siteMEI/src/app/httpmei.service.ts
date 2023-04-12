@@ -44,5 +44,4 @@ export class HttpMeiService {
     }
     return throwError(()=> new Error('Algo errado aconteceu, por favor tente novamente depois.'))
   } 
-
 }

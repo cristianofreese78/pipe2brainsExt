@@ -1,30 +1,17 @@
-<main class="form-signin w-100 m-auto mx-auto">   
-
+<main class="form-signin w-100 m-auto mx-auto">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSldZ9670r5kOg2RisJp9lpc3bU13vnPus6zQ&usqp=CAU" class="mb-4 rounded mx-auto d-block" width="108" height="85">
     <h1 class="h3 mb-3 fw-normal text-center linha1">Eu Posso Ser MEI?</h1>
     <h1 class="h3 mb-3 fw-normal text-center linha2">Por favor informe seu CPF</h1>
-    <form>
-        <!--<div class="all-steps" id="all-steps">
-            <span class="step active finish"></span>
-            <span class="step"></span> 
-            <span class="step"></span>
-            <span class="step"></span>
-        </div>-->
-
+    <form #FormValidaRecaptcha="ngForm" id="formRecaptcha" (ngSubmit)="validaForm(FormValidaRecaptcha)">
         <div class="form-group">
             <label for="cpfConsultaMEI">CPF</label>
-            <input type="text" class="form-control" id="cpfConsultaMEI" placeholder="000.000.000-00">
+            <input type="text" class="form-control" ngModel name="cpfConsultaMEI" id="cpfConsultaMEI" placeholder="000.000.000-00" required mask="000.000.000-00">
         </div>
         <div class="form-group">
             <label for="dtNascConsultaMEI">Data de Nascimento</label>
-            <input type="text" class="form-control" id="dtNascConsultaMEI" placeholder="__/__/__">
+            <input type="text" class="form-control" ngModel name="dtNascConsultaMEI" id="dtNascConsultaMEI" placeholder="__/__/__" required mask="00/00/0000">
         </div>
-
-        <div class="checkbox mb-3">
-        <label>
-            <input type="checkbox" value="remember-me">Recaptcha
-        </label>
-        </div>
-        <div id="botao"><button routerLink="/cadastro" class="form-submit-button text-center" type="button">Consultar</button></div>    
+        <div> <div #divRecaptcha id="recaptcha"></div> </div>        
+        <div id="botaoRecaptcha"><button [disabled]="FormValidaRecaptcha.invalid" class="form-submit-button text-center" type="submit">Consultar</button></div>    
     </form>
 </main>

@@ -15,6 +15,7 @@ export class HttpCpfService {
   ) { }
 
   getRequest(cpf: string): Observable<any> {
+    console.log(this.url)
     return this.http.get(`${this.url}/${cpf}`)
     .pipe(
       catchError(this.handleError)
@@ -32,9 +33,4 @@ export class HttpCpfService {
     }
     return throwError(()=> new Error('Algo errado aconteceu, por favor tente novamente depois.'))
   } 
-
-
-
-
-
 }

@@ -1,28 +1,24 @@
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSldZ9670r5kOg2RisJp9lpc3bU13vnPus6zQ&usqp=CAU" class="mb-4 rounded mx-auto d-block" width="108" height="85">
-    <h1 class="h3 mb-3 fw-normal text-center linha1">Complete os dados</h1>
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSldZ9670r5kOg2RisJp9lpc3bU13vnPus6zQ&usqp=CAU" class="mb-4 rounded mx-auto d-block" width="108" height="85">
+<h1 class="h3 mb-3 fw-normal text-center linha1">Complete os dados</h1>
     
 <form #form="ngForm" name="form" class="form-signin w-100 m-auto mx-auto">
-
     <ul class="slides-container" id="slides-container">
         <!-- dados pessoais -->
-
         <li class="slide" id="slide-1">
             <h1 class="h3 mb-3 fw-normal text-center linha2">Seus dados para contato</h1>
             <div class="mb-3">
                 <label for="cpf" class="form-label">CPF: </label>
-                <input type="text" required class="form-control input_text" name="cpf" #cpf="ngModel" ngModel id="cpf" #cpfValue
-                    (blur)="getCPF(cpfValue.value)">
+                <input type="text" required class="form-control input_text" name="cpf" #cpf="ngModel" ngModel id="cpf" [(ngModel)]="formModel.cpf" readonly mask="000.000.000-00">
             </div>
             <div class="mb-3">
                 <label for="nome" class="form-label ">Nome Completo: </label>
-                <input type="text" required class="form-control input_text" name="nome" #nome="ngModel" ngModel id="nome"
-                    [(ngModel)]="formModel.nome">
+                <input type="text" required class="form-control input_text" name="nome" #nome="ngModel" ngModel id="nome" [(ngModel)]="formModel.nome" readonly>
             </div>
 
             <div class="mb-3">
                 <label for="dataNascimento" class="form-label ">Data de Nascimento: </label>
                 <input type="text" required mask="00/00/0000" class="form-control input_text" id="dataNascimento"
-                    name="dataNascimento" [(ngModel)]="formModel.dataNascimento">
+                    name="dataNascimento" [(ngModel)]="formModel.dataNascimento" readonly>
             </div>
             <div class="mb-3">
                 <label for="email" class="form-label">Email: </label>
@@ -39,11 +35,9 @@
                 <input type="text" class="form-control" mask="(00) 00000-0000" id="telefone2" name="telefone2" #telefone2="ngModel" ngModel
                     [(ngModel)]="formModel.telefone2">
             </div>
-
         </li>
         
         <li class="slide slide-hidden" id="slide-2">
-
             <!-- definicao dos cnae -->
             <h1 class="h3 mb-3 fw-normal text-center linha2">Atividade que irá desempenhar</h1>
             <div class="mb-3">
@@ -61,14 +55,14 @@
                 </ul>
             </div>
         </li>
-        <li class="slide slide-hidden" style="padding-bottom: 184px;" id="slide-3">
 
+        <li class="slide slide-hidden" style="padding-bottom: 184px;" id="slide-3">
             <!-- dados do negócio -->
             <h1 class="h3 mb-3 fw-normal text-center linha2">Dados sobre o seu negócio</h1>
             <div class="mb-3">
                 <label for="previsaoFaturamento" class="form-label">Previsão de faturamento (anual): </label>
                 <input type="text" class="form-control" id="previsaoFaturamento" name="previsaoFaturamento"
-                    #previsaoFaturamento="ngModel" ngModel [(ngModel)]="formModel.previsaoFaturamento">
+                    #previsaoFaturamento="ngModel" ngModel [(ngModel)]="formModel.previsaoFaturamento" mask="R$0,00">
             </div>
             <div class="mb-3">
                 <label for="previsaoCustos" class="form-label">Previsão de custos (anual): </label>
@@ -87,9 +81,9 @@
                         #temFiliais="ngModel" ngModel [(ngModel)]="formModel.temFiliais">
                     <label for="temFiliais">Marque para SIM</label>
                 </div>
-            </div> 
-
+            </div>
         </li>
+
         <li class="slide slide-hidden" style="padding-bottom: 106px;" id="slide-4">
             <!-- questionario social -->
             <h1 class="h3 mb-3 fw-normal text-center linha2">Recebe algum destes benefícios?</h1>
@@ -154,9 +148,8 @@
                     <label for="temBolsaFamilia">Bolsa família</label>
                 </div>
             </div>
-            <!--<button (click)="onSubmit()" type="button" class="btn btn-primary">Enviar</button>-->
-
         </li>
+
         <li class="slide slide-hidden" style="padding-bottom: 262px;" id="slide-5">
             <h1 class="h3 mb-3 fw-normal text-center linha2">Consulta Estabelecer (opcional)</h1>            
             <fieldset>               
@@ -169,7 +162,7 @@
                 <div class="mb-3">
                     <label for="enderecoImovel" class="form-label ">Endereço do imóvel: </label>
                     <input type="text" required class="form-control input_text" id="enderecoImovel" name="enderecoImovel"
-                        #nrCadastroIPTU="ngModel" ngModel [(ngModel)]="formModel.enderecoIPTU">
+                        #nrCadastroIPTU="ngModel" ngModel [(ngModel)]="formModel.enderecoIPTU" readonly>
                 </div>
                 <div class="mb-3">
                     <label for="areaEmpreend" class="form-label ">Área do empreendimento: </label>
@@ -178,41 +171,15 @@
                 </div>
             </fieldset>
         </li>
+
         <div class="d-flex justify-content-center">
-            <div class="spinner-border text-primary text-center"  id="spinnerCad" style="width: 3rem; height: 3rem;" role="status">
+            <div class="spinner-border text-primary text-center" id="spinnerCad" style="width: 3rem; height: 3rem;" role="status">
             </div>
         </div>
+
         <div class="text-center">
-            <button (click)="prevButtonClick()" class="slide-arrow" id="slide-arrow-prev">
-                &#8249;
-            </button>
-               <button (click)="nextButtonClick()" class="slide-arrow" id="slide-arrow-next">
-                &#8250;
-            </button>
+            <button (click)="prevButtonClick()" class="slide-arrow" id="slide-arrow-prev">&#8249;</button>
+            <button (click)="nextButtonClick()" class="slide-arrow" id="slide-arrow-next">&#8250;</button>
         </div>
     </ul>
 </form>
-
-<!--
-    <div class="mb-3">
-                <div class="input-group-text">
-                    <input id="eFuncPublico" class="form-check-input me-1" type="checkbox" value="false"
-                        name="eFuncPublico" #eFuncPublico="ngModel" ngModel [(ngModel)]="formModel.eFuncPublico">
-                    <label for="eFuncPublico">Funcionário público federal</label>
-                </div>
-            </div>
-            <div class="mb-3">
-                <div class="input-group-text">
-                    <input id="eSocio" class="form-check-input me-1" type="checkbox" value="false" name="eSocio"
-                        #eSocio="ngModel" ngModel [(ngModel)]="formModel.eSocio">
-                    <label for="eSocio">Sócio de outra empresa</label>
-                </div>
-            </div>
-            <div class="mb-3">
-                <div class="input-group-text">
-                    <input id="eMeiAtivo" class="form-check-input me-1" type="checkbox" value="false" name="eMeiAtivo"
-                        #eMeiAtivo="ngModel" ngModel [(ngModel)]="formModel.eMeiAtivo">
-                    <label for="eMeiAtivo">MEI ativo</label>
-                </div>
-            </div>
--->

@@ -11,10 +11,7 @@ export class DataService {
   public cpfModel: CpfModel = {
     ni: "",
     nome: "",
-    situacao: {
-        codigo: "",
-        descricao: ""
-    },
+    situacao: { codigo: "", descricao: ""},
     nascimento: "",
     naturezaOcupacao: ""
   }
@@ -64,7 +61,16 @@ export class DataService {
   private cpf = new BehaviorSubject<CpfModel>(this.cpfModel);
   cpfAtual = this.cpf.asObservable();
 
+  private cpfExport: CpfModel;
   constructor() {}
+
+  setcpfExport(pacoteCpf: CpfModel){
+    this.cpfExport = pacoteCpf;
+  }
+
+  getcpfExport(){
+    return this.cpfExport;
+  }
 
   setRequisicao(req: FormModel) {
     this.requisicao.next(req);

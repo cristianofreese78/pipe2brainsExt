@@ -40,5 +40,4 @@ export class HttpIptuService {
     }
     return throwError(()=> new Error('Algo errado aconteceu, por favor tente novamente depois.'))
   } 
-
 }

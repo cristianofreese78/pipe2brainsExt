@@ -1,6 +1,6 @@
-<div class="validacao-container w-100 m-auto mx-auto">
+<div class="container">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSldZ9670r5kOg2RisJp9lpc3bU13vnPus6zQ&usqp=CAU" class="mb-4 rounded mx-auto d-block" width="108" height="85">
-    <h1 class="h3 mb-3 fw-normal text-center linha1"  id="titulo">Sr(a): {{(formModel.nome).split(' ')[0]}}</h1>
+    <h1 class="h3 mb-3 fw-normal text-center linha1">Sr(a): {{(formModel.nome).split(' ')[0]}}</h1>
     <div class="mb-3">       
         <h1 class="h3 mb-3 fw-normal text-center linha2">Acompanhe o resultado abaixo</h1>
     </div>
@@ -8,8 +8,7 @@
     <div *ngIf="formModel.statusConsultaMEI" class="mb-3">
         <div class="alert alert-success" role="alert">
                 <span>VOCÊ ESTÁ APTO PARA SER MEI</span>
-        </div>
-        <!--<div class="mb-3"><span><button type="button" class="btn btn-dark" (click)="consultaEstabelecer()">Obter Consulta Estabelecer</button></span></div>-->
+        </div>       
     </div>
 
     <div *ngIf="!formModel.statusConsultaMEI" class="mb-3">
@@ -139,9 +138,7 @@
         <div class="alert alert-danger" role="alert">
                 <span>PERMITIDO TER APENAS 1 FUNCIONÁRIO</span>
         </div>
-    </div>
-
-    
+    </div>    
 
     <div *ngIf="formModel.codStatusConsultaIPTU == 9" style="padding-top:50px;"> 
         <div class="alert alert-secondary" role="alert">
@@ -162,7 +159,7 @@
         </ng-template>
     </div>
     <div id="container">
-        <div class="row" style="padding-top: 40px; ">
+        <div class="row" style="padding-top: 40px; padding-bottom: 40px;">
                 <div id="divleft">
                 </div>
                 <div class="rounded-5" id="divright">
@@ -172,4 +169,3 @@
         </div>
     </div>
 </div>
-

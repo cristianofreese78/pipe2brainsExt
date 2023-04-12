@@ -24,10 +24,7 @@ export class CadastroComponent implements OnInit {
   public cpfAtual: CpfModel = {
     ni: "",
     nome: "",
-    situacao: {
-      codigo: "",
-      descricao: ""
-    },
+    situacao: { codigo: "", descricao: "" },
     nascimento: "",
     naturezaOcupacao: ""
   }
@@ -80,8 +77,14 @@ export class CadastroComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.data.requisicaoAtual.subscribe(requisicao => this.formModel = requisicao);
-    document.getElementById(`spinnerCad`)?.classList.add('slide-hidden');  
+    this.data.requisicaoAtual.subscribe(requisicao => this.formModel = requisicao);    
+    document.getElementById(`spinnerCad`)?.classList.add('slide-hidden'); 
+    console.log(this.data.getcpfExport());
+    this.cpfAtual = this.data.getcpfExport();
+    this.formModel.nome = this.cpfAtual.nome;
+    this.formModel.dataNascimento = this.cpfAtual.nascimento;
+    this.formModel.statusCpf = this.cpfAtual.situacao.descricao;
+    this.formModel.cpf = this.cpfAtual.ni; 
   }
 
   buscaCNAE(key: string) {
@@ -97,7 +100,6 @@ export class CadastroComponent implements OnInit {
 
   getCPF(cpf: string) {
     cpf = cpf.replace(/[^0-9]/g, '')
-
     if (cpf) {
       this.httpCpfService.getRequest(cpf).subscribe((response) => {
         this.cpfAtual = response;
@@ -107,7 +109,7 @@ export class CadastroComponent implements OnInit {
         this.formModel.cpf = cpf;
       })
     }
-  }
+}
 
   getIPTU(nrCadastroIPTU: string) {
     nrCadastroIPTU = nrCadastroIPTU.replace(/[^0-9]/g, '');
@@ -119,8 +121,7 @@ export class CadastroComponent implements OnInit {
     }
   }
 
-  postMEI(formModel: FormModel) {
-    
+  postMEI(formModel: FormModel) {    
     this.httpMeiService.postRequest(formModel).subscribe((response) => {
       console.log('resposta do post');
       console.log(response);
@@ -147,7 +148,6 @@ export class CadastroComponent implements OnInit {
   }
 
   // funcionalidade de carousel
-
   public slideAtivo: number = 1;
 
   nextButtonClick() {
@@ -184,5 +184,10 @@ export class CadastroComponent implements OnInit {
     document.getElementById(`slide-arrow-next`)?.classList.add('slide-hidden');
     document.getElementById(`slide-arrow-prev`)?.classList.add('slide-hidden');
     document.getElementById(`spinnerCad`)?.classList.remove('slide-hidden');
-  }  
+  }
+  
+  teste() {
+    alert("Clicou");
+    this.formModel.nome = "JOAO";
+  }   
 }

@@ -17,9 +17,7 @@ export class ValidacaocadComponent implements OnInit {
   public cpfModel: CpfModel = {
     ni: "",
     nome: "",
-    situacao: {
-        codigo: "",
-        descricao: ""
+    situacao: { codigo: "", descricao: ""
     },
     nascimento: "",
     naturezaOcupacao: ""
@@ -161,10 +159,4 @@ export class ValidacaocadComponent implements OnInit {
       return false;
     }
   }
-
-
-
-
-
-
 }

@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { TelarecaptchaRoutingModule } from './telarecaptcha-routing.module';
 import { TelarecaptchaComponent } from './telarecaptcha.component';
+import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask'
 
 
 @NgModule({
@@ -10,8 +11,14 @@ import { TelarecaptchaComponent } from './telarecaptcha.component';
     TelarecaptchaComponent
   ],
   imports: [
-    CommonModule,
-    TelarecaptchaRoutingModule
+    TelarecaptchaRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgxMaskDirective,
+    NgxMaskPipe
+  ],
+  providers: [
+    provideNgxMask()
   ]
 })
 export class TelarecaptchaModule { }
