@@ -44,6 +44,7 @@ export class CadastroComponent implements OnInit {
     eFuncPublico: false,
     eSocio: false,
     eMeiAtivo: false,
+
     temAposentadoriaInvalidez: false,
     temAuxilioDoenca: false,
     temSalarioMaternidade: false,
@@ -79,12 +80,19 @@ export class CadastroComponent implements OnInit {
   ngOnInit() {
     this.data.requisicaoAtual.subscribe(requisicao => this.formModel = requisicao);    
     document.getElementById(`spinnerCad`)?.classList.add('slide-hidden'); 
-    console.log(this.data.getcpfExport());
+    // Carregamento inicial do objeto contendo dados do cpf obtidos na tela recaptcha
+    // Estes dados serão carregados automaticamente na primeira etapa do form
     this.cpfAtual = this.data.getcpfExport();
     this.formModel.nome = this.cpfAtual.nome;
     this.formModel.dataNascimento = this.cpfAtual.nascimento;
     this.formModel.statusCpf = this.cpfAtual.situacao.descricao;
-    this.formModel.cpf = this.cpfAtual.ni; 
+    this.formModel.cpf = this.cpfAtual.ni;
+
+    switch (this.cpfAtual.naturezaOcupacao){
+      case '22': this.formModel.eFuncPublico = true; break;
+      case '12': this.formModel.eSocio = true; break;
+      case '11': this.formModel.eMeiAtivo  = true; break;
+    }     
   }
 
   buscaCNAE(key: string) {
@@ -180,14 +188,11 @@ export class CadastroComponent implements OnInit {
     slideAtivar?.classList.remove('slide-hidden')
   }
 
+  // Bloqueio da navegação durante o processamento do formulário de cadastro
   bloqueioSlide() {
     document.getElementById(`slide-arrow-next`)?.classList.add('slide-hidden');
     document.getElementById(`slide-arrow-prev`)?.classList.add('slide-hidden');
     document.getElementById(`spinnerCad`)?.classList.remove('slide-hidden');
   }
-  
-  teste() {
-    alert("Clicou");
-    this.formModel.nome = "JOAO";
-  }   
+   
 }

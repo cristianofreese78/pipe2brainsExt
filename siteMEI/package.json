@@ -23,6 +23,8 @@
     "@popperjs/core": "^2.11.6",
     "bootstrap": "^5.2.3",
     "ng-recaptcha": "^11.0.0",
+    "ng2-currency-mask": "^13.0.3",
+    "ngx-currency-mask": "^4.3.2",
     "ngx-mask": "^15.1.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

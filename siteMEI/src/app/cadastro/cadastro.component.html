@@ -1,9 +1,14 @@
+<!-- Form principal da aplicação. Recebe inicialmente os dados relacionados a um CPF, obtidos na tela recaptcha e posteriormente permite o preenchimento dos demais dados relacionados a pesquisa de viabilidade MEI.
+Os campos possuem formatação predefinida e são apresentadas em etapas para que o usuário possa informar os dados
+por seção. Ao fim do preenchimento existe a opção de realizar a consulta de Estabelecer via código do imóvel. -->
+<!-- Estilização original e Escopo original e funcional desenvolvido por Carlos Pinheiro -->
+<!-- Atualizações, estilizações, testes de consistência e validações finais desenvolvidas por Cristiano Freese-->
 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSldZ9670r5kOg2RisJp9lpc3bU13vnPus6zQ&usqp=CAU" class="mb-4 rounded mx-auto d-block" width="108" height="85">
 <h1 class="h3 mb-3 fw-normal text-center linha1">Complete os dados</h1>
     
 <form #form="ngForm" name="form" class="form-signin w-100 m-auto mx-auto">
     <ul class="slides-container" id="slides-container">
-        <!-- dados pessoais -->
+        <!-- Dados Pessoais -->
         <li class="slide" id="slide-1">
             <h1 class="h3 mb-3 fw-normal text-center linha2">Seus dados para contato</h1>
             <div class="mb-3">
@@ -38,7 +43,7 @@
         </li>
         
         <li class="slide slide-hidden" id="slide-2">
-            <!-- definicao dos cnae -->
+            <!-- Dados da Atividade Principal -->
             <h1 class="h3 mb-3 fw-normal text-center linha2">Atividade que irá desempenhar</h1>
             <div class="mb-3">
                 <label for="cnaePrimario" class="form-label">Selecione atividade principal: </label>
@@ -57,17 +62,17 @@
         </li>
 
         <li class="slide slide-hidden" style="padding-bottom: 184px;" id="slide-3">
-            <!-- dados do negócio -->
+            <!-- Dados Básicos do Negócio -->
             <h1 class="h3 mb-3 fw-normal text-center linha2">Dados sobre o seu negócio</h1>
             <div class="mb-3">
                 <label for="previsaoFaturamento" class="form-label">Previsão de faturamento (anual): </label>
                 <input type="text" class="form-control" id="previsaoFaturamento" name="previsaoFaturamento"
-                    #previsaoFaturamento="ngModel" ngModel [(ngModel)]="formModel.previsaoFaturamento" mask="R$0,00">
+                    #previsaoFaturamento="ngModel" currencyMask ngModel [(ngModel)]="formModel.previsaoFaturamento" [options]="{ align: 'left', prefix: 'R$ ', thousands: '.', decimal: ',' }">
             </div>
             <div class="mb-3">
                 <label for="previsaoCustos" class="form-label">Previsão de custos (anual): </label>
                 <input type="text" class="form-control" id="previsaoCustos" name="previsaoCustos"
-                    #previsaoCustos="ngModel" ngModel [(ngModel)]="formModel.previsaoCustos">
+                    #previsaoCustos="ngModel" currencyMask ngModel [(ngModel)]="formModel.previsaoCustos" [options]="{ align: 'left', prefix: 'R$ ', thousands: '.', decimal: ',' }">
             </div>
             <div class="mb-3">
                 <label for="nrFuncionarios" class="form-label">Número de funcionários: </label>
@@ -85,7 +90,7 @@
         </li>
 
         <li class="slide slide-hidden" style="padding-bottom: 106px;" id="slide-4">
-            <!-- questionario social -->
+            <!-- Questionário Social -->
             <h1 class="h3 mb-3 fw-normal text-center linha2">Recebe algum destes benefícios?</h1>
             <div class="mb-3">
                 <div class="input-group-text">
@@ -151,6 +156,7 @@
         </li>
 
         <li class="slide slide-hidden" style="padding-bottom: 262px;" id="slide-5">
+            <!-- Dados Gerais para Consulta de Estabelecer -->
             <h1 class="h3 mb-3 fw-normal text-center linha2">Consulta Estabelecer (opcional)</h1>            
             <fieldset>               
                 <div class="mb-3">
@@ -173,11 +179,13 @@
         </li>
 
         <div class="d-flex justify-content-center">
+            <!-- Spinner dinâmico para bloquear navegação do formulário durante processamento das informações -->
             <div class="spinner-border text-primary text-center" id="spinnerCad" style="width: 3rem; height: 3rem;" role="status">
             </div>
         </div>
 
         <div class="text-center">
+            <!-- Navegação do formulário -->
             <button (click)="prevButtonClick()" class="slide-arrow" id="slide-arrow-prev">&#8249;</button>
             <button (click)="nextButtonClick()" class="slide-arrow" id="slide-arrow-next">&#8250;</button>
         </div>

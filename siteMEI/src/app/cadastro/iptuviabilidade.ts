@@ -6,5 +6,5 @@ export interface IptuViabilidadeModel{
     cnaePrincipal: string,
     cpf: string,
     inscrCadIPTU: string,
-    areaEmpreendimento: number
+    areaEmpreend: number
 }

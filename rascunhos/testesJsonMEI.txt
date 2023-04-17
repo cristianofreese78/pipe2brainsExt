@@ -143,6 +143,11 @@ Gerando WAR e Implantando no Servidor - Formação Java Web Full-Stack
 
 http://192.168.43.82:8080/appMEI/consultacpf/
 
+mascara faturamento anual e mensal
+Conferencia campos do json para consulta viabilidade
+Comentários
+Hospedagem API, BD e atualização página
+
 
 
 

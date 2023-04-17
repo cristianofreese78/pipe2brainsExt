@@ -31,7 +31,7 @@ export class ValidacaocadComponent implements OnInit {
     cnaePrincipal: '',
     cpf: '',
     inscrCadIPTU: '',
-    areaEmpreendimento: 0
+    areaEmpreend: 0
   }
 
   public formModel: FormModel = {
@@ -104,10 +104,11 @@ export class ValidacaocadComponent implements OnInit {
   public resultadoEstabelecer: string;  
 
   consultaEstabelecer(){
-    this.estabelecerModel.cnaePrincipal = this.formModel.cnaePrimario;
+    this.estabelecerModel.cnaePrincipal = this.formModel.cnaePrimario.replaceAll("-","");
+    this.estabelecerModel.cnaePrincipal = this.estabelecerModel.cnaePrincipal.replaceAll("/","");
     this.estabelecerModel.cpf = this.formModel.cpf;
     this.estabelecerModel.inscrCadIPTU = this.formModel.nrCadastroIPTU;
-    this.estabelecerModel.areaEmpreendimento = this.formModel.areaEmpreend
+    this.estabelecerModel.areaEmpreend = this.formModel.areaEmpreend
 
     this.httpIptuService.postRequest(this.estabelecerModel).subscribe((response) => {
       this.resultadoEstabelecer = response;

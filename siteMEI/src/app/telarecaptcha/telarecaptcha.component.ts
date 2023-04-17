@@ -21,6 +21,7 @@ export class TelarecaptchaComponent {
     recaptcha: new FormControl(null, [Validators.required]),
   });
   
+  // Objeto que irá conter os dados do form de validação
   public cpfValidacao: CpfModel = {
     ni: "",
     nome: "",
@@ -42,10 +43,7 @@ export class TelarecaptchaComponent {
     this.renderizarReCaptcha();    
   }
 
-  ngOnInit() {
-    //const par = this.activatedRoute.snapshot.paramMap.get('parametro');
-    //console.log(par);
-  }
+  ngOnInit() {}
 
   renderizarReCaptcha() {
     // Evita que change detection seja disparado cada vez que o setTimeout for executado
@@ -74,15 +72,17 @@ export class TelarecaptchaComponent {
     });
   }
 
+  // Realiza testes de consistência no form, tais como CPF Inválido, data de nascimento inconsistente
   public validaForm(form: NgForm) :void{    
     this.telarecaptchaService.retornaDadosCPF(form.value.cpfConsultaMEI).subscribe(
       (response: CpfModel) =>{
         if (response == null) alert("CPF INVÁLIDO");
         else{          
           if  (response.nascimento != form.value.dtNascConsultaMEI) alert("DATA DE NASCIMENTO INCORRETA");
+          // Caso os dados esteja consistentes ocorre a navegação para a página de cadastro e o objeto com
+          // dados relacionados ao cpf é exportado para a rota
           else{ 
-            this.cpfValidacao = response;                       
-            //this.router.navigateByUrl('/cadastro', {state: this.cpfValidacao});
+            this.cpfValidacao = response;            
             this.dataService.setcpfExport(this.cpfValidacao);
             this.router.navigateByUrl('/cadastro');
           }                 
