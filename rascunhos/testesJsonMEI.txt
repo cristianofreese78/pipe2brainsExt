@@ -4,7 +4,7 @@
         "nome": "Joaquim da Silva",
         "cpf": "40442820135",
         "statusCpf": "Regular",
-        "dataNascimento": "10/12/2000",
+        "dataNascimento": "14/11/1970",
         "email": "pipe2brains@gmail.com",
         "telefone1": "47999887766",
         "telefone2": "47912345678",
@@ -39,7 +39,7 @@
         "nome": "Marta Rocha",
         "cpf": "40532176871",
         "statusCpf": "Regular",
-        "dataNascimento": "22/09/2022",
+        "dataNascimento": "22/09/2002",
         "email": "pipe2brains@gmail.com",
         "telefone1": "47999775533",
         "telefone2": "47934213456",
@@ -68,7 +68,7 @@
 	"codStatusConsultaIPTU": 0
 }
 
-3) Francisco Santos - Apto MEI, Inapto Estabelecer - Possui CPF sem restrições, atende requisitos MEI, não atende requisitos Estabelecer (cod 2 - Imóvel com restrições)
+3) Francisco Santos - Inapto MEI, Inapto Estabelecer - Possui CPF sem restrições, não atende requisitos MEI (eMEI), não atende requisitos Estabelecer (cod 2 - Imóvel com restrições)
 {
         "nome": "Francisco Santos",
         "cpf": "63017285995",
@@ -102,7 +102,7 @@
 	"codStatusConsultaIPTU": 2
 }
 
-4) Paula Lopes - Apto MEI, Inapto Estabelecer - Possui CPF sem restrições, atende requisitos MEI, não atende requisitos Estabelecer (cod 1 - Atividade não permitida no local)
+4) Paula Lopes - Inapto MEI, Inapto Estabelecer - Possui CPF sem restrições, não atende requisitos MEI (eFuncPub), não atende requisitos Estabelecer (cod 1 - Atividade não permitida no local)
 {
         "nome": "Paula Lopes",
         "cpf": "10975384600",
@@ -142,12 +142,12 @@
 Gerando WAR e Implantando no Servidor - Formação Java Web Full-Stack
 
 http://192.168.43.82:8080/appMEI/consultacpf/
+npx ng serve --host 192.168.43.82
 
-mascara faturamento anual e mensal
-Conferencia campos do json para consulta viabilidade
-Comentários
 Hospedagem API, BD e atualização página
 
+DELETE FROM tb_cadastro_mei WHERE area_empreend=8; 
+select * from tb_cadastro_mei;
 
 
 

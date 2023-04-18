@@ -1,6 +1,9 @@
 # pipe2brains
 Desafio C: Como acelerar o processo de abertura de empresas
 
+11/03/23 - Protótipo Telas - Desenvolvido por Emylli Lima -
+        https://www.figma.com/file/Y3v7jvNKDCRWzPsjBJ4RLw/Untitled?node-id=0-1&t=FRJy0ZcS5fZndNvj-0
+
 11/03/23 - 
 Primeiras implementações página de validações do usuário
 Rascunhos e coletas iniciais de informações
@@ -35,4 +38,12 @@ Opções: POST - /        - Registro um pacote json na tabela e realiza o envio 
 16/03 - API /viablidadeMei (Nova rota para a tabela TB_CADASTRO_MEI)
 Opção: PUT - /retornoconsultapmb/(id) - atualiza registro com os dados de retorno da Consulta de Estabelecer
 
-Protótipo - https://www.figma.com/file/Y3v7jvNKDCRWzPsjBJ4RLw/Untitled?node-id=0-1&t=FRJy0ZcS5fZndNvj-0
+30/03 - Atualizações - Responsividade tela cadastro
+
+31/03 - Atualizações - Estilização Tela de Validação, links Suporte e WhatsApp
+
+12/04 - Implemtações tela Recaptcha e validações/estilizaçoes Forms
+
+17/04 - Ajustes finais nas estilizações, testes de consistência, e máscaras
+
+18/04 - Inserção de comentários gerais e novas validações e testes de consistencia

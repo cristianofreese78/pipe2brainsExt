@@ -1,15 +1,16 @@
+<!-- Estilização original e Escopo original e funcional desenvolvido por Carlos Pinheiro -->
+<!-- Atualizações, estilizações, testes de consistência e validações finais desenvolvidas por Cristiano Freese-->
+
 <!-- Form principal da aplicação. Recebe inicialmente os dados relacionados a um CPF, obtidos na tela recaptcha e posteriormente permite o preenchimento dos demais dados relacionados a pesquisa de viabilidade MEI.
 Os campos possuem formatação predefinida e são apresentadas em etapas para que o usuário possa informar os dados
 por seção. Ao fim do preenchimento existe a opção de realizar a consulta de Estabelecer via código do imóvel. -->
-<!-- Estilização original e Escopo original e funcional desenvolvido por Carlos Pinheiro -->
-<!-- Atualizações, estilizações, testes de consistência e validações finais desenvolvidas por Cristiano Freese-->
 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSldZ9670r5kOg2RisJp9lpc3bU13vnPus6zQ&usqp=CAU" class="mb-4 rounded mx-auto d-block" width="108" height="85">
 <h1 class="h3 mb-3 fw-normal text-center linha1">Complete os dados</h1>
     
 <form #form="ngForm" name="form" class="form-signin w-100 m-auto mx-auto">
     <ul class="slides-container" id="slides-container">
-        <!-- Dados Pessoais -->
         <li class="slide" id="slide-1">
+            <!-- Dados Pessoais -->
             <h1 class="h3 mb-3 fw-normal text-center linha2">Seus dados para contato</h1>
             <div class="mb-3">
                 <label for="cpf" class="form-label">CPF: </label>
