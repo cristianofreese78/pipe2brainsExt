@@ -9,6 +9,7 @@ import { HttpMeiService } from '../httpmei.service';
 import { CpfModel } from './cpfmodel';
 import { FormModel } from './formmodel';
 import { IptuResponseModel } from './ipturesponse';
+import { IptuViabilidadeModel } from './iptuviabilidade';
 
 @Component({
   selector: 'app-cadastro',
@@ -27,6 +28,17 @@ export class CadastroComponent implements OnInit {
     situacao: { codigo: "", descricao: "" },
     nascimento: "",
     naturezaOcupacao: ""
+  }
+
+  public estabelecerModel: IptuViabilidadeModel = {
+    grupoNaturezaJur: '',
+    naturezaJur: '',
+    objConsulta: '',
+    tipoEstabelecimento: '',
+    cnaePrincipal: '',
+    cpf: '',
+    inscrCadIPTU: '',
+    areaEmpreend: 0
   }
 
   public formModel: FormModel = {
@@ -129,8 +141,21 @@ export class CadastroComponent implements OnInit {
     }
   }
 
-  postMEI(formModel: FormModel) {    
-    this.httpMeiService.postRequest(formModel).subscribe((response) => {
+  public resultadoEstabelecer: string;  
+
+  consultaEstabelecer(nrCadastroIPTU: string, cnaePrincipal: string){
+    this.estabelecerModel.inscrCadIPTU = nrCadastroIPTU;
+    this.estabelecerModel.cnaePrincipal = cnaePrincipal.replaceAll("-","");
+    this.estabelecerModel.cnaePrincipal = cnaePrincipal.replaceAll("/","");
+    this.httpIptuService.postRequest(this.estabelecerModel).subscribe((response) => {
+      this.resultadoEstabelecer = response;
+      if (this.resultadoEstabelecer == '0'){this.formModel.statusConsultaIPTU = true}
+      this.formModel.codStatusConsultaIPTU = parseInt(this.resultadoEstabelecer)      
+    })
+  }
+
+  postMEI() {    
+      this.httpMeiService.postRequest(this.formModel).subscribe((response) => {
       console.log('resposta do post');
       console.log(response);
 
@@ -142,7 +167,6 @@ export class CadastroComponent implements OnInit {
         alert('Cadastro enviado com sucesso!')
       }  
     })
-    this.data.setRequisicao(this.formModel)       
   }
 
   atribuiCnae(elem: any) {
@@ -151,8 +175,8 @@ export class CadastroComponent implements OnInit {
   }
 
   onSubmit() {
-    this.data.setCpf(this.cpfAtual)
-    this.postMEI(this.formModel)
+    this.consultaEstabelecer(this.formModel.nrCadastroIPTU, this.formModel.cnaePrimario);
+    this.postMEI()
   }
 
   // funcionalidade de carousel

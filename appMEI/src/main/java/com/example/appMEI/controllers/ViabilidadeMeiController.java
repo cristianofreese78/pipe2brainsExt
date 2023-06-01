@@ -73,7 +73,22 @@ public class ViabilidadeMeiController {
             textoEmail += "\nNúmero de Funcionários - " + viabilidadeMeiModelAux.getNrFuncionarios();
             textoEmail += "\nPrecisa ter filiais - ".concat((viabilidadeMeiModelAux.isTemFiliais()) ? "SIM" : "NAO");
 
-            textoEmail += "\n\nStatus Consulta Estabelecer PMB - Não realizada ou pendente";
+            String restricaoPMB = "";
+            switch (viabilidadeMeiModelAux.getCodStatusConsultaIPTU()) {
+                case 1:
+                    restricaoPMB = "Atividade não permitida para o local";
+                    break;
+                case 2:
+                    restricaoPMB = "Imóvel com restrições";
+                    break;
+                case 3:
+                    restricaoPMB = "Código Imóvel Inválido ou Inexistente";
+                    break;
+                case 9:
+                    restricaoPMB = "Não optou por Consulta para Estabelecer";
+                    break;
+            }
+            textoEmail += "\n\nStatus Consulta Estabelecer PMB - ".concat((viabilidadeMeiModelAux.isStatusConsultaIPTU()) ? "Apto" : "Inapto - (" + restricaoPMB + ")");
             textoEmail += "\nStatus Consulta Viabilidade MEI - ".concat((viabilidadeMeiModelAux.isStatusConsultaMEI()) ? "Apto" : "Inapto");
         }
         // Opção para texto de retorno da Consulta de Estabelecer
@@ -124,16 +139,7 @@ public class ViabilidadeMeiController {
         viabilidadeMeiModel.setDataConsulta(LocalDateTime.now(ZoneId.of("America/Sao_Paulo")));
 
         ResponseEntity<Object> cadastroViabilidadeMeiResponse = ResponseEntity.status(HttpStatus.CREATED).body(viabilidadeMeiService.save(viabilidadeMeiModel));
-        if (cadastroViabilidadeMeiResponse.getStatusCode().value()==201) {
-            EmailModel emailModel = new EmailModel();
-            emailModel.setEmailFrom("cristianofreese@gmail.com");
-            emailModel.setEmailTo("cristianofreese@terra.com.br");
-            emailModel.setOwnerRef("Pipe2Brains");
-            emailModel.setSubject("Notificação de Consulta MEI - " + viabilidadeMeiModel.getCpf() + " - " + viabilidadeMeiModel.getNome());
-            String textoViabilidadeEmail = FormataTextoMensagemEmail(viabilidadeMeiModel,1);
-            emailModel.setText(textoViabilidadeEmail);
-            emailService.sendEmail(emailModel);
-        }
+
         return cadastroViabilidadeMeiResponse;
     }
 
@@ -181,6 +187,18 @@ public class ViabilidadeMeiController {
         viabilidadeMeiModel.setId(viabilidadeMeiModelOptional.get().getId());
         viabilidadeMeiModel.setDataConsulta(viabilidadeMeiModelOptional.get().getDataConsulta());
         ResponseEntity<Object> viabilidadeMeiResponse = ResponseEntity.status(HttpStatus.OK).body(viabilidadeMeiService.save(viabilidadeMeiModel));
+
+        if (viabilidadeMeiResponse.getStatusCode().value()==200) {
+            EmailModel emailModel = new EmailModel();
+            emailModel.setEmailFrom("cristianofreese@gmail.com");
+            emailModel.setEmailTo(viabilidadeMeiModel.getEmail());
+            emailModel.setOwnerRef("Pipe2Brains");
+            emailModel.setSubject("Notificação de Consulta MEI - " + viabilidadeMeiModel.getCpf() + " - " + viabilidadeMeiModel.getNome());
+            String textoViabilidadeEmail = FormataTextoMensagemEmail(viabilidadeMeiModel,1);
+            emailModel.setText(textoViabilidadeEmail);
+            emailService.sendEmail(emailModel);
+        }
+
         return viabilidadeMeiResponse;
     }
 

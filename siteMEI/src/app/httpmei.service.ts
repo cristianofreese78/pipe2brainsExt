@@ -23,6 +23,7 @@ export class HttpMeiService {
   }
 
   postRequest(body: FormModel): Observable<any> {
+    console.log(body);
     return this.http.post(`${this.url}`, body)
     .pipe(
       catchError(this.handleError)

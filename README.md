@@ -8,11 +8,11 @@ Desafio C: Como acelerar o processo de abertura de empresas
 Primeiras implementações página de validações do usuário
 Rascunhos e coletas iniciais de informações
  
-13/03/23 - API ficticia /consultacpf
-Opções: GET - / - Retorna lista com todos os dados dos individuo contidos no objeto Listas
+13/03/23 - API fictícia /consultacpf
+Opções: GET - / - Retorna lista com todos os dados dos individuos contidos no objeto Listas
         GET - /(cpf) - Retorna objeto contendo os dados de um individuo por CPF
 
-14/03/23 - API ficticia /consultaviabilidadepmb
+14/03/23 - API fictícia /consultaviabilidadepmb
 Opções:  GET - / - Retorna lista com todos os cadastros de IPTU contidos no objeto Listas
          GET - /(cadiptu) - Retorna objeto contendo os dados de IPTU de um registro pelo nr de cadastro
          POST - / - Envia objeto json contendo dados necessário para consulta de viabilidade e retorna:
@@ -47,3 +47,33 @@ Opção: PUT - /retornoconsultapmb/(id) - atualiza registro com os dados de reto
 17/04 - Ajustes finais nas estilizações, testes de consistência, e máscaras
 
 18/04 - Inserção de comentários gerais e novas validações e testes de consistencia
+
+26/04 - Build Docker contendo o pacote jar da aplicação Spring Boot e acesso externo ao bd Postgres
+
+12/05 - Build Docker contendo a build minificada da aplicação Angular - servidor web nginx
+
+28/05 - Instancias cloud Google Cloud Run, Google Cloud SQL
+
+30/05 - Instancias cloud Amazon ECS, e Amazon RDS
+
+01/06 - Conclusão das implementações
+
+Comandos para criação das imagens docker, execução de containers no Docker Desktop e repositório Docker Hub
+  docker build -t nomeImagem:1.0 .
+  docker run -p 8080:8080 nomeImagem:1.0
+  docker tag nomeImagem:1.0 nomeUsuarioDockerHub/nomeImagem:1.0
+  docker push nomeUsuarioDockerHub/nomeImagem:1.0
+
+Comandos para envio de imagens para o repositório Amazon ECR
+  aws configure (Key ID, Access ID, Region name, Output Format)
+  aws ecr create-repository --repository-name nomeImagem --region nomeRegiao
+  aws ecr get-login-password --region sa-east-1 | docker login --username AWS --password-stdin url/nomeImagem
+  docker tag nomeImagem:1.0 url/nomeImagem
+  docker push url/nomeImagem
+
+Comandos para enviar uma imagem do Docker Hub para o Google Cloud Registry        
+  docker login
+  docker pull nomeImagem:1.0
+  docker tag nomeImagem:1.0 url/nomeImagem
+  docker push nomeImagem:1.0 url/nomeImagem   
+

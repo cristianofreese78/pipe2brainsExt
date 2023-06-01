@@ -13,6 +13,7 @@ export class TelarecaptchaService {
   constructor(private http: HttpClient) { }
 
   public retornaDadosCPF(cpf: string): Observable<any> {
+    console.log(`${this.url}/${cpf}`);
     return this.http.get(`${this.url}/${cpf}`);
   }
 }

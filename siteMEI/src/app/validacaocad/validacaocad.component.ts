@@ -99,7 +99,7 @@ export class ValidacaocadComponent implements OnInit {
     this.httpMeiService.putRequest(this.formModel).subscribe((response) => {
       console.log('resposta do put');
       console.log(response);
-    } )}
+    } )}    
   
   public resultadoEstabelecer: string;  
 

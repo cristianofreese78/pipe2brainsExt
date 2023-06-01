@@ -1,7 +1,7 @@
 export const environment = {
-    urlViabilidadeMei: 'http://192.168.43.82:8080/appMEI/viabilidadeMei',
-    urlConsultaIptu:'http://192.168.43.82:8080/appMEI/consultaviabilidadepmb',
-    urlConsultaCpf: 'http://192.168.43.82:8080/appMEI/consultacpf',
+    urlViabilidadeMei: 'http://localhost:8080/viabilidadeMei',
+    urlConsultaIptu:'http://localhost:8080/consultaviabilidadepmb',
+    urlConsultaCpf: 'http://localhost:8080/consultacpf',
 
     cnaesTabelaB: ['4930-2/01','4930-2/02','4930-2/03','4930-2/04'],
     maxFatTabelaA: 81000,
